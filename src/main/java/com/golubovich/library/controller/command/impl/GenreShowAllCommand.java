@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
 public class GenreShowAllCommand implements Command {
     public static final String SUCCESS = "0";
     public static final String FAIL = "1";
-    public static final String EQUAL_REGEX = "=";
+    private static final String DIVIDER_REGEX = "&";
 
     private static final Logger log = Logger.getLogger(GenreShowAllCommand.class);
 
@@ -21,7 +21,7 @@ public class GenreShowAllCommand implements Command {
             GenreService genreService = provider.getGenreService();
 
             try {
-                return SUCCESS + "&" + genreService.showAll();
+                return SUCCESS + DIVIDER_REGEX + genreService.showAll();
             } catch (ServiceException e) {
                 log.error(e.getMessage());
             }

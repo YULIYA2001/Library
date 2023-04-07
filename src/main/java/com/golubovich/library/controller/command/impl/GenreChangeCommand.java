@@ -21,7 +21,7 @@ public class GenreChangeCommand implements Command {
             GenreService genreService = provider.getGenreService();
 
             String id = params[0].split(EQUAL_REGEX)[1];
-            String description = params[0].split(EQUAL_REGEX)[1];
+            String description = params[1].split(EQUAL_REGEX)[1];
 
             try {
                 genreService.changeDescription(Long.parseLong(id), description);
