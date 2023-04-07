@@ -17,6 +17,8 @@ public class AuthorDAOImpl implements AuthorDAO {
     private static final String CREATE_QUERY = "INSERT INTO author(name, info) VALUES(?,?)";
     private static final String READ_ALL_QUERY = "SELECT id, name, info FROM author";
     private static final String FIND_BY_ID_QUERY = "SELECT id, name, info FROM author WHERE id=?";
+    private static final String FIND_BY_BOOK_ID_QUERY = "SELECT id, name, info FROM author " +
+            "JOIN book_author ON author.id = author_id WHERE book_id=?";
     private static final String DELETE_QUERY = "DELETE FROM author WHERE id=?";
     private static final String UPDATE_QUERY = "UPDATE author SET name=?, info=? WHERE id=?";
 
@@ -84,7 +86,7 @@ public class AuthorDAOImpl implements AuthorDAO {
     }
 
     @Override
-    public void update(Author updatedAuthor) throws DAOException {
+    public boolean update(Author updatedAuthor) throws DAOException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -94,7 +96,8 @@ public class AuthorDAOImpl implements AuthorDAO {
             preparedStatement.setString(1, updatedAuthor.getName());
             preparedStatement.setString(2, updatedAuthor.getInfo());
             preparedStatement.setLong(3, updatedAuthor.getId());
-            preparedStatement.executeUpdate();
+            int res = preparedStatement.executeUpdate();
+            return res == 1;
         } catch (SQLException e) {
             throw new DAOException("Error when update author", e);
         } catch (ConnectionPoolException e) {
@@ -135,6 +138,42 @@ public class AuthorDAOImpl implements AuthorDAO {
             throw new DAOException("DB connection fail", e);
         } catch (SQLException e) {
             throw new DAOException("Error when find author by id", e);
+        } finally {
+            connectionPool.closeConnection(connection, preparedStatement, resultSet);
+        }
+    }
+
+    @Override
+    public List<Author> findByBookId(long id) throws DAOException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = connectionPool.takeConnection();
+            preparedStatement = connection.prepareStatement(FIND_BY_BOOK_ID_QUERY);
+            preparedStatement.setLong(1, id);
+            resultSet = preparedStatement.executeQuery();
+
+            if (!resultSet.isBeforeFirst()) {
+                return null;
+            }
+
+            List<Author> authors = new ArrayList<>();
+            while (resultSet.next()) {
+                Author author = new Author(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("info"));
+                authors.add(author);
+            }
+
+            return authors;
+
+        } catch (ConnectionPoolException e) {
+            throw new DAOException("DB connection fail", e);
+        } catch (SQLException e) {
+            throw new DAOException("Error when find author by book id", e);
         } finally {
             connectionPool.closeConnection(connection, preparedStatement, resultSet);
         }

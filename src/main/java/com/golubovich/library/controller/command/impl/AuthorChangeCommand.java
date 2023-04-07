@@ -24,8 +24,7 @@ public class AuthorChangeCommand implements Command {
             String info = params[1].split(EQUAL_REGEX)[1];
 
             try {
-                authorService.changeInfo(Long.parseLong(id), info);
-                return SUCCESS;
+                return authorService.changeInfo(Long.parseLong(id), info) ? SUCCESS : FAIL;
             } catch (ServiceException e) {
                 log.error(e.getMessage());
             } catch (NumberFormatException e) {

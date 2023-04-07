@@ -10,9 +10,11 @@ public interface AuthorDAO {
 
     List<Author> read() throws DAOException;
 
-    void update(Author updatedAuthor) throws DAOException;
+    boolean update(Author updatedAuthor) throws DAOException;
 
     boolean delete(Author deletedAuthor) throws DAOException;
 
     Author findById(long id) throws DAOException;
+
+    List<Author> findByBookId(long id) throws DAOException;
 }
