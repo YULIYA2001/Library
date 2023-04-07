@@ -28,7 +28,7 @@ public class GenreServiceImpl implements GenreService {
     }
 
     @Override
-    public void changeDescription(long id, String description) throws ServiceException {
+    public boolean changeDescription(long id, String description) throws ServiceException {
         try {
             Genre genre = genreDAO.findById(id);
             if (genre != null) {
@@ -37,7 +37,7 @@ public class GenreServiceImpl implements GenreService {
             else {
                 throw new ServiceException("Id is not found");
             }
-            genreDAO.update(genre);
+            return genreDAO.update(genre);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
@@ -52,6 +52,21 @@ public class GenreServiceImpl implements GenreService {
         }
     }
 
+    @Override
+    public Genre takeById(Long id) throws ServiceException {
+        try {
+            Genre genre = genreDAO.findById(id);
+            if (genre != null) {
+                return genre;
+            }
+            else {
+                throw new ServiceException("No genre with id");
+            }
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+    }
+
     private void validateGenre(Genre genre) throws ServiceException {
         if (genre.getName() == null) {
             throw new ServiceException("Not valid data");
@@ -60,18 +75,4 @@ public class GenreServiceImpl implements GenreService {
             genre.setDescription("");
         }
     }
-
-//        // find by id
-//        Genre genre = genreDAO.findById(25);
-//        if (genre != null) {
-//            System.out.println(genre);
-//        }
-//        else {
-//            System.out.println("Жанра с таким id нет");
-//        }
-//
-//        // delete
-//        boolean isDeleted = genreDAO.delete(genre);
-//        System.out.println(isDeleted);
-
 }

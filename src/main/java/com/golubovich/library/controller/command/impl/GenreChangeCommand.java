@@ -24,8 +24,7 @@ public class GenreChangeCommand implements Command {
             String description = params[1].split(EQUAL_REGEX)[1];
 
             try {
-                genreService.changeDescription(Long.parseLong(id), description);
-                return SUCCESS;
+                return genreService.changeDescription(Long.parseLong(id), description) ? SUCCESS : FAIL;
             } catch (ServiceException e) {
                 log.error(e.getMessage());
             } catch (NumberFormatException e) {

@@ -95,8 +95,8 @@ public class GenreDAOImpl implements GenreDAO {
             preparedStatement.setString(1, updatedGenre.getName());
             preparedStatement.setString(2, updatedGenre.getDescription());
             preparedStatement.setLong(3, updatedGenre.getId());
-            preparedStatement.executeUpdate();
-            return true;
+            int res = preparedStatement.executeUpdate();
+            return res == 1;
         } catch (SQLException e) {
             throw new DAOException("Error when update genre", e);
         } catch (ConnectionPoolException e) {
@@ -115,8 +115,8 @@ public class GenreDAOImpl implements GenreDAO {
             connection = connectionPool.takeConnection();
             preparedStatement = connection.prepareStatement(DELETE_QUERY);
             preparedStatement.setLong(1, deletedGenre.getId());
-            preparedStatement.executeUpdate();
-            return  true;
+            int res = preparedStatement.executeUpdate();
+            return res == 1;
         } catch (SQLException e) {
             throw new DAOException("Error when delete genre", e);
         } catch (ConnectionPoolException e) {
