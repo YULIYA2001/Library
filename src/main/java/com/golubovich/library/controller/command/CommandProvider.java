@@ -20,6 +20,14 @@ public class CommandProvider {
         repository.put(CommandName.ADD_AUTHOR, new AuthorAddCommand());
         repository.put(CommandName.SHOW_AUTHORS, new AuthorShowAllCommand());
         repository.put(CommandName.CHANGE_AUTHOR, new AuthorChangeCommand());
+        repository.put(CommandName.ADD_BOOK, new BookAddCommand());
+        repository.put(CommandName.SHOW_BOOKS, new BookShowAllCommand());
+        repository.put(CommandName.CHANGE_BOOK, new BookChangeCommand());
+        repository.put(CommandName.DELETE_BOOK, new BookDeleteCommand());
+        repository.put(CommandName.SIGNIN_PERSON, new PersonSignInCommand());
+        repository.put(CommandName.SIGNUP_PERSON, new PersonSignUpCommand());
+        repository.put(CommandName.SHOW_PEOPLE, new PersonShowAllCommand());
+        repository.put(CommandName.CHANGE_PERSON, new PersonChangeCommand());
     }
 
     public Command getCommand(String name) {

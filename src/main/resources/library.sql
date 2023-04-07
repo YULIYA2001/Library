@@ -5,7 +5,8 @@ CREATE TABLE person
 (
     id       BIGSERIAL PRIMARY KEY,
     email    VARCHAR(30) NOT NULL UNIQUE,
-    password VARCHAR(15) NOT NULL
+    password VARCHAR(100) NOT NULL,
+    role VARCHAR(20) NOT NULL
 );
 
 
@@ -21,17 +22,16 @@ CREATE TABLE person_detail
     FOREIGN KEY (person_id) REFERENCES person (id) ON DELETE CASCADE
 );
 
+
 CREATE TABLE item
 (
     id       BIGSERIAL PRIMARY KEY,
     title    VARCHAR(100) NOT NULL,
     language VARCHAR(10)  NOT NULL,
-    is_available   BOOLEAN  NOT NULL,   --убрать?? и так видно person_id - NULL
-
+--     is_available   BOOLEAN  NOT NULL,   -- и так видно person_id - NULL
     person_id BIGINT,
     FOREIGN KEY (person_id) REFERENCES person (id)
 );
-
 
 -- CREATE TABLE person_item
 -- (
@@ -85,6 +85,6 @@ CREATE TABLE book_author
     book_id   BIGINT,
     author_id BIGINT,
     PRIMARY KEY (book_id, author_id),
-    FOREIGN KEY (book_id) REFERENCES book (item_id),
+    FOREIGN KEY (book_id) REFERENCES book (item_id) ON DELETE CASCADE ,
     FOREIGN KEY (author_id) REFERENCES author (id)
 );

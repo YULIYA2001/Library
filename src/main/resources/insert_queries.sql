@@ -11,8 +11,8 @@ INSERT INTO genre(name, description)
 VALUES ('роман',
         'литературный жанр, чаще прозаический, зародившийся в средние века у романских народов как рассказ на народном языке');
 
-INSERT INTO item(title, language, is_available)
-VALUES ('Евгений Онегин', 'ru', true);
+INSERT INTO item(title, language)
+VALUES ('Евгений Онегин', 'ru');
 
 INSERT INTO book
 VALUES (1, 1);
@@ -20,8 +20,8 @@ VALUES (1, 1);
 INSERT INTO book_author
 VALUES (1, 1);
 
-INSERT INTO item(title, language, is_available)
-VALUES ('Фитиль', 'ru', true);
+INSERT INTO item(title, language)
+VALUES ('Фитиль', 'ru');
 
 INSERT INTO magazine
 VALUES (5, '1998-03-15', 'юмор', 2);
@@ -34,8 +34,8 @@ VALUES ('Е.П. Петров', '1902-1942 Русский советский пи
 INSERT INTO author(name, info)
 VALUES ('И.А. Ильф', '1897-1937 Русский советский писатель, драматург...');
 
-INSERT INTO item(title, language, is_available)
-VALUES ('12 стульев', 'ru', true);
+INSERT INTO item(title, language)
+VALUES ('12 стульев', 'ru');
 
 INSERT INTO book
 VALUES (3, 1);
@@ -49,9 +49,6 @@ VALUES (3, 3);
 
 UPDATE item
 SET person_id = 1
-WHERE id = 3;
-UPDATE item
-SET is_available = false
 WHERE id = 3;
 
 
@@ -98,3 +95,6 @@ VALUES ('повесть',
 
 
 -- DELETE FROM genre WHERE id>4;
+DELETE FROM book_author WHERE book_id>3;
+DELETE FROM book WHERE item_id>3;
+DELETE FROM item WHERE id>3;

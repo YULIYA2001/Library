@@ -18,29 +18,28 @@ FROM person_detail
 WHERE person_id = 1;
 
 -- информация о журнале по id
-SELECT id, title, language, is_available, person_id, number, date, theme
+SELECT id, title, language, person_id, number, date, theme
 FROM item
          JOIN magazine ON item.id = magazine.item_id
 WHERE id = 2;
 
 -- доступные журналы
-SELECT id, title, language, is_available, number, date, theme
+SELECT id, title, language, number, date, theme
 FROM item
          JOIN magazine ON item.id = magazine.item_id
-WHERE is_available = true;
+WHERE person_id IS NOT NULL;
 
 -- доступные журналы на русском
-SELECT id, title, language, is_available, number, date, theme
+SELECT id, title, language, number, date, theme
 FROM item
          JOIN magazine ON item.id = magazine.item_id
-WHERE is_available = true
+WHERE person_id IS NOT NULL
   AND language = 'ru';
 
 -- информация о книге
 SELECT item.id,
        title,
        language,
-       is_available,
        genre.name  AS genre,
        description AS genre_desc,
        author.name AS author,
@@ -55,7 +54,7 @@ FROM item
 --WHERE item.id = 1;
 --WHERE author.name = 'А.С.Пушкин';
 --WHERE genre.name = 'роман';
-WHERE is_available = true
+WHERE person_id IS NOT NULL
   AND item.id = 3;
 
 -- информация об авторах книги с id=3
