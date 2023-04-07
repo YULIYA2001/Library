@@ -5,18 +5,22 @@ public class Person {
     private String email;
     private String password;
 
+    private Role role;
+
     public Person() {
     }
 
     public Person(String email, String password) {
         this.email = email;
         this.password = password;
+        this.role = Role.USER;
     }
 
-    public Person(long id, String email, String password) {
+    public Person(long id, String email, String password, Role role) {
         this.id = id;
         this.email = email;
         this.password = password;
+        this.role = role;
     }
 
     public long getId() {
@@ -39,12 +43,21 @@ public class Person {
         this.password = password;
     }
 
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
                 "id=" + id +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", role=" + role +
                 '}';
     }
 }

@@ -6,11 +6,11 @@ import com.golubovich.library.dao.DAOException;
 import java.util.List;
 
 public interface PersonDAO {
-    boolean create(Person person) throws DAOException;
+    long create(Person person) throws DAOException;
 
     List<Person> read() throws DAOException;
 
-    void update(Person currentPerson, Person updatedPerson) throws DAOException;
+    boolean update(Person updatedPerson) throws DAOException;
 
     boolean delete(Person deletedPerson) throws DAOException;
 
