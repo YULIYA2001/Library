@@ -1,9 +1,6 @@
 package com.golubovich.library.controller.command;
 
-import com.golubovich.library.controller.command.impl.GenreAddCommand;
-import com.golubovich.library.controller.command.impl.GenreChangeCommand;
-import com.golubovich.library.controller.command.impl.GenreShowAllCommand;
-import com.golubovich.library.controller.command.impl.UnknownCommand;
+import com.golubovich.library.controller.command.impl.*;
 import org.apache.log4j.Logger;
 
 import java.util.EnumMap;
@@ -20,6 +17,9 @@ public class CommandProvider {
         repository.put(CommandName.ADD_GENRE, new GenreAddCommand());
         repository.put(CommandName.SHOW_GENRES, new GenreShowAllCommand());
         repository.put(CommandName.CHANGE_GENRE, new GenreChangeCommand());
+        repository.put(CommandName.ADD_AUTHOR, new AuthorAddCommand());
+        repository.put(CommandName.SHOW_AUTHORS, new AuthorShowAllCommand());
+        repository.put(CommandName.CHANGE_AUTHOR, new AuthorChangeCommand());
     }
 
     public Command getCommand(String name) {
