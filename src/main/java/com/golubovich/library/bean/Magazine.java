@@ -9,14 +9,14 @@ public class Magazine extends Item {
     public Magazine() {
     }
 
-    public Magazine(String title, String language, int number, Date date) {
-        super(title, language);
+    public Magazine(String title, String language, Person person, int number, Date date) {
+        super(title, language, person);
         this.number = number;
         this.date = date;
     }
 
-    public Magazine(long id, String title, String language, int number, Date date) {
-        super(id, title, language);
+    public Magazine(long id, String title, String language, Person person, int number, Date date) {
+        super(id, title, language, person);
         this.number = number;
         this.date = date;
     }

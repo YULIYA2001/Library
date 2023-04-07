@@ -1,7 +1,6 @@
 package com.golubovich.library.service.impl;
 
 import com.golubovich.library.bean.Author;
-import com.golubovich.library.bean.Genre;
 import com.golubovich.library.dao.DAOException;
 import com.golubovich.library.dao.DAOProvider;
 import com.golubovich.library.dao.api.AuthorDAO;
@@ -14,6 +13,7 @@ public class AuthorServiceImpl implements AuthorService {
 
     private final DAOProvider daoProvider = DAOProvider.getInstance();
     private final AuthorDAO authorDAO = daoProvider.getAuthorDAO();
+
     @Override
     public long add(Author author) throws ServiceException {
         try {
@@ -28,16 +28,15 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public void changeInfo(long id, String info) throws ServiceException {
+    public boolean changeInfo(long id, String info) throws ServiceException {
         try {
             Author author = authorDAO.findById(id);
             if (author != null) {
                 author.setInfo(info);
-            }
-            else {
+            } else {
                 throw new ServiceException("Id is not found");
             }
-            authorDAO.update(author);
+            return authorDAO.update(author);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
@@ -51,6 +50,21 @@ public class AuthorServiceImpl implements AuthorService {
             throw new ServiceException(e);
         }
     }
+
+    @Override
+    public Author takeById(Long id) throws ServiceException {
+        try {
+            Author author = authorDAO.findById(id);
+            if (author != null) {
+                return author;
+            } else {
+                throw new ServiceException("No author with id");
+            }
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+    }
+
 
     private void validateAuthor(Author author) throws ServiceException {
         if (author.getName() == null) {

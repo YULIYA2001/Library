@@ -4,21 +4,21 @@ import java.util.List;
 
 public class Book extends Item {
     private Genre genre;
-    private List<Author> author;
+    private List<Author> authors;
 
     public Book() {
     }
 
-    public Book(String title, String language, Genre genre, List<Author> author) {
-        super(title, language);
+    public Book(String title, String language, Person person, Genre genre, List<Author> authors) {
+        super(title, language, person);
         this.genre = genre;
-        this.author = author;
+        this.authors = authors;
     }
 
-    public Book(long id, String title, String language, Genre genre, List<Author> author) {
-        super(id, title, language);
+    public Book(long id, String title, String language, Person person, Genre genre, List<Author> authors) {
+        super(id, title, language, person);
         this.genre = genre;
-        this.author = author;
+        this.authors = authors;
     }
 
     public Genre getGenre() {
@@ -29,19 +29,19 @@ public class Book extends Item {
         this.genre = genre;
     }
 
-    public List<Author> getAuthor() {
-        return author;
+    public List<Author> getAuthors() {
+        return authors;
     }
 
-    public void setAuthor(List<Author> author) {
-        this.author = author;
+    public void setAuthors(List<Author> authors) {
+        this.authors = authors;
     }
 
     @Override
     public String toString() {
         return "Book{" +
                 "genre=" + genre +
-                ", author=" + author +
+                ", authors=" + authors +
                 "} " + super.toString();
     }
 }

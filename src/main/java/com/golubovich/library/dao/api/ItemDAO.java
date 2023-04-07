@@ -4,12 +4,12 @@ import com.golubovich.library.dao.DAOException;
 
 import java.util.List;
 
-public interface ItemDAO <T> {
-    boolean create(T item) throws DAOException;
+public interface ItemDAO<T> {
+    long create(T item) throws DAOException;
 
     List<T> read() throws DAOException;
 
-    void update(T currentItem, T updatedItem) throws DAOException;
+    boolean update(T updatedItem) throws DAOException;
 
     boolean delete(T deletedItem) throws DAOException;
 

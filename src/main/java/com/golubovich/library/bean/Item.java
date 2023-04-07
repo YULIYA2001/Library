@@ -4,23 +4,22 @@ public abstract class Item {
     private long id;
     private String title;
     private String language;
-
-    private boolean isAvailable;
-
-//    Person person;
+    private Person person;
 
     public Item() {
     }
 
-    public Item(String title, String language) {
+    public Item(String title, String language, Person person) {
         this.title = title;
         this.language = language;
+        this.person = person;
     }
 
-    public Item(long id, String title, String language) {
+    public Item(long id, String title, String language, Person person) {
         this.id = id;
         this.title = title;
         this.language = language;
+        this.person = person;
     }
 
     public long getId() {
@@ -43,12 +42,21 @@ public abstract class Item {
         this.language = language;
     }
 
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
     @Override
     public String toString() {
         return "Item{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", language='" + language + '\'' +
+                ", person=" + person +
                 '}';
     }
 }
