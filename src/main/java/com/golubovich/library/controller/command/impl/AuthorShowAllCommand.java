@@ -1,5 +1,6 @@
 package com.golubovich.library.controller.command.impl;
 
+import com.golubovich.library.bean.Author;
 import com.golubovich.library.controller.command.Command;
 import com.golubovich.library.service.ServiceException;
 import com.golubovich.library.service.ServiceProvider;
@@ -21,7 +22,11 @@ public class AuthorShowAllCommand implements Command {
             AuthorService authorService = provider.getAuthorService();
 
             try {
-                return SUCCESS + DIVIDER_REGEX + authorService.showAll();
+                StringBuilder response = new StringBuilder(SUCCESS + DIVIDER_REGEX);
+                for (Author a: authorService.showAll()) {
+                    response.append(a.toString()).append('\n');
+                }
+                return response.toString();
             } catch (ServiceException e) {
                 log.error(e.getMessage());
             }

@@ -1,5 +1,6 @@
 package com.golubovich.library.controller.command.impl;
 
+import com.golubovich.library.bean.Person;
 import com.golubovich.library.controller.command.Command;
 import com.golubovich.library.controller.command.EncryptMD;
 import com.golubovich.library.service.ServiceException;
@@ -26,6 +27,10 @@ public class PersonSignInCommand implements Command {
             String password = EncryptMD.encryptPassword(params[1].split(EQUAL_REGEX)[1]);
 
             try {
+                Person person = personService.signIn(email, password);
+                if (person == null) {
+                    return FAIL;
+                }
                 return SUCCESS + DIVIDER_REGEX + personService.signIn(email, password);
             } catch (ServiceException e) {
                 log.error(e.getMessage());

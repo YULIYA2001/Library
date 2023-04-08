@@ -1,5 +1,6 @@
 package com.golubovich.library.controller.command.impl;
 
+import com.golubovich.library.bean.Genre;
 import com.golubovich.library.controller.command.Command;
 import com.golubovich.library.service.ServiceException;
 import com.golubovich.library.service.ServiceProvider;
@@ -21,7 +22,11 @@ public class GenreShowAllCommand implements Command {
             GenreService genreService = provider.getGenreService();
 
             try {
-                return SUCCESS + DIVIDER_REGEX + genreService.showAll();
+                StringBuilder response = new StringBuilder(SUCCESS + DIVIDER_REGEX);
+                for (Genre g: genreService.showAll()) {
+                    response.append(g.toString()).append('\n');
+                }
+                return response.toString();
             } catch (ServiceException e) {
                 log.error(e.getMessage());
             }

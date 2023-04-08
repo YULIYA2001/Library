@@ -22,7 +22,7 @@ public class PersonChangeCommand implements Command {
             PersonService personService = provider.getPersonService();
 
             String id = params[0].split(EQUAL_REGEX)[1];
-            Role role = Role.valueOf(params[1].split(EQUAL_REGEX)[1]);
+            Role role = Role.valueOf(params[1].split(EQUAL_REGEX)[1].toUpperCase());
 
             try {
                 return personService.changeRole(Long.parseLong(id), role) ? SUCCESS : FAIL;

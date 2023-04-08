@@ -1,5 +1,6 @@
 package com.golubovich.library.controller.command.impl;
 
+import com.golubovich.library.bean.Book;
 import com.golubovich.library.controller.command.Command;
 import com.golubovich.library.service.ServiceException;
 import com.golubovich.library.service.ServiceProvider;
@@ -21,7 +22,11 @@ public class BookShowAllCommand implements Command {
             ItemService bookService = provider.getBookService();
 
             try {
-                return SUCCESS + DIVIDER_REGEX + bookService.showAll();
+                StringBuilder response = new StringBuilder(SUCCESS + DIVIDER_REGEX);
+                for (Book b: bookService.showAll()) {
+                    response.append(b.toString()).append('\n');
+                }
+                return response.toString();
             } catch (ServiceException e) {
                 log.error(e.getMessage());
             }
