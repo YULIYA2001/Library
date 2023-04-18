@@ -1,10 +1,12 @@
-package com.golubovich.library.model;
+package com.golubovich.library.spring.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @Data
 @SuperBuilder
 @NoArgsConstructor
@@ -12,12 +14,13 @@ import lombok.experimental.SuperBuilder;
 @Table(name = "item")
 public abstract class Item {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String title;
     private String language;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
+    @JsonIgnoreProperties(value = {"applications", "hibernateLazyInitializer"})
+    @JoinColumn(name = "person_id")
     private Person person;
 
     public Item(String title, String language, Person person) {

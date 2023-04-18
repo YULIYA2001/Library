@@ -1,9 +1,6 @@
-package com.golubovich.library.model;
+package com.golubovich.library.spring.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,11 +12,11 @@ import lombok.NoArgsConstructor;
 @Table(name = "person")
 public class Person {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String email;
     private String password;
-
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     public Person(String email, String password) {

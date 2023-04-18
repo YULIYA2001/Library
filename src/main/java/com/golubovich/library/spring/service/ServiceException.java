@@ -1,4 +1,4 @@
-package com.golubovich.library.servisespring;
+package com.golubovich.library.spring.service;
 
 public class ServiceException extends Exception {
 

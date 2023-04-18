@@ -1,19 +1,19 @@
-package com.golubovich.library.servisespring.api;
+package com.golubovich.library.spring.service.api;
 
 
-import com.golubovich.library.model.Book;
-import com.golubovich.library.model.Item;
-import com.golubovich.library.servisespring.ServiceException;
+import com.golubovich.library.spring.model.Book;
+import com.golubovich.library.spring.service.ServiceException;
 
 import java.util.List;
 
-public interface ItemService {
-    long add(Book book) throws ServiceException;
+public interface ItemService<T> {
+    Book add(T book) throws ServiceException;
 
-    void changeReader(long id, long person_id) throws ServiceException;
+    T changeReader(long id, long person_id) throws ServiceException;
 
-    List<Item> showAll() throws ServiceException;
+    List<T> showAll() throws ServiceException;
 
     void delete(Long id) throws ServiceException;
 
+    T takeById(Long id) throws ServiceException;
 }
