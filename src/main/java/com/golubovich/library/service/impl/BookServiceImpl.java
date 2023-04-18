@@ -6,7 +6,7 @@ import com.golubovich.library.dao.DAOException;
 import com.golubovich.library.dao.DAOProvider;
 import com.golubovich.library.dao.api.ItemDAO;
 import com.golubovich.library.dao.api.PersonDAO;
-import com.golubovich.library.service.ServiceException;
+import com.golubovich.library.spring.service.ServiceException;
 import com.golubovich.library.service.api.ItemService;
 
 import java.util.List;

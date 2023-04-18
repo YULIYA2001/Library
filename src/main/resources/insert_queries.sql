@@ -92,10 +92,8 @@ VALUES ('повесть',
 
 
 
-
-
 DELETE FROM genre WHERE id>4;
 DELETE FROM book_author WHERE book_id>3;
 DELETE FROM book WHERE item_id>3;
 DELETE FROM item WHERE id>3;
-DELETE FROM author WHERE id>3;
+DELETE FROM author WHERE id>7;

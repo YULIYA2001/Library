@@ -6,7 +6,7 @@ CREATE TABLE person
     id       BIGSERIAL PRIMARY KEY,
     email    VARCHAR(30) NOT NULL UNIQUE,
     password VARCHAR(100) NOT NULL,
-    role VARCHAR(20) NOT NULL
+    role VARCHAR(50) NOT NULL
 );
 
 
@@ -45,13 +45,13 @@ CREATE TABLE item
 
 CREATE TABLE magazine
 (
---     id      BIGSERIAL PRIMARY KEY,
     number  INT    NOT NULL,
     date    DATE   NOT NULL,
     theme   VARCHAR(100) DEFAULT '',
-    item_id BIGINT NOT NULL UNIQUE,
-    FOREIGN KEY (item_id) REFERENCES item (id) ON DELETE CASCADE
+    id BIGINT NOT NULL UNIQUE,
+    FOREIGN KEY (id) REFERENCES item (id) ON DELETE CASCADE
 );
+
 
 
 CREATE TABLE genre
@@ -64,10 +64,9 @@ CREATE TABLE genre
 
 CREATE TABLE book
 (
---     id       BIGSERIAL PRIMARY KEY,
-    item_id  BIGINT NOT NULL UNIQUE,
+    id  BIGINT NOT NULL UNIQUE,
     genre_id BIGINT,
-    FOREIGN KEY (item_id) REFERENCES item (id) ON DELETE CASCADE,
+    FOREIGN KEY (id) REFERENCES item (id) ON DELETE CASCADE,
     FOREIGN KEY (genre_id) REFERENCES genre (id)
 );
 
@@ -85,6 +84,6 @@ CREATE TABLE book_author
     book_id   BIGINT,
     author_id BIGINT,
     PRIMARY KEY (book_id, author_id),
-    FOREIGN KEY (book_id) REFERENCES book (item_id) ON DELETE CASCADE ,
+    FOREIGN KEY (book_id) REFERENCES book (id) ON DELETE CASCADE,
     FOREIGN KEY (author_id) REFERENCES author (id)
 );

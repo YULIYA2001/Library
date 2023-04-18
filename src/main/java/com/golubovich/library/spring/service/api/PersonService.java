@@ -1,15 +1,15 @@
-package com.golubovich.library.service.api;
+package com.golubovich.library.servisespring.api;
 
-import com.golubovich.library.bean.Person;
-import com.golubovich.library.bean.Role;
-import com.golubovich.library.spring.service.ServiceException;
+import com.golubovich.library.model.Person;
+import com.golubovich.library.model.Role;
+import com.golubovich.library.servisespring.ServiceException;
 
 import java.util.List;
 
 public interface PersonService {
     long add(Person person) throws ServiceException;
 
-    boolean changeRole(long id, Role role) throws ServiceException;
+    void changeRole(long id, Role role) throws ServiceException;
 
     List<Person> showAll() throws ServiceException;
 

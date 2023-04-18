@@ -2,7 +2,7 @@ package com.golubovich.library.service.api;
 
 
 import com.golubovich.library.bean.Book;
-import com.golubovich.library.service.ServiceException;
+import com.golubovich.library.spring.service.ServiceException;
 
 import java.util.List;
 

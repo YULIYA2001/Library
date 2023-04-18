@@ -23,7 +23,7 @@ public class BookTest {
 
     @Test
     public void testDelete() {
-        String response = controller.doAction("delete_book&id=24");
+        String response = controller.doAction("delete_book&id=25");
 
         if (response.split(DIVIDER_REGEX)[0].equals(ERROR_REGEX)) {
             System.out.println("Ошибка при удалении книги. Проверить id");

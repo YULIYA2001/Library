@@ -21,13 +21,13 @@ public class BookDAOImpl implements ItemDAO<Book> {
 
     private static final String CREATE_ITEM_QUERY = "INSERT INTO item(title, language) VALUES(?,?)";
     private static final String ADD_AUTHORS_QUERY = "INSERT INTO book_author(book_id, author_id) VALUES(?,?)";
-    private static final String CREATE_BOOK_QUERY = "INSERT INTO book(item_id, genre_id) VALUES(?,?)";
+    private static final String CREATE_BOOK_QUERY = "INSERT INTO book(id, genre_id) VALUES(?,?)";
     private static final String READ_ALL_QUERY = "SELECT item.id, title, language, person_id, genre_id" +
-            " FROM item JOIN book ON item.id = book.item_id";
+            " FROM item JOIN book ON item.id = book.id";
     private static final String DELETE_QUERY = "DELETE FROM item WHERE id=?";
     private static final String UPDATE_ITEM_QUERY = "UPDATE item SET title=?, language=?, person_id=?" +
             " WHERE id=?";
-    private static final String BY_ID = " WHERE id=?";
+    private static final String BY_ID = " WHERE item.id=?";
 
     @Override
     public long create(Book book) throws DAOException {
