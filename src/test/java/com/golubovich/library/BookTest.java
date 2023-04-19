@@ -4,6 +4,8 @@ import com.golubovich.library.controller.Controller;
 import com.golubovich.library.controller.ControllerImpl;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 class BookTest {
     private static final Controller controller = ControllerImpl.getInstance();
     private static final String DIVIDER_REGEX = "&";
@@ -19,6 +21,8 @@ class BookTest {
         } else {
             System.out.println(" нига добавлена");
         }
+
+        assertEquals(response, "0");
     }
 
     @Test
@@ -30,6 +34,8 @@ class BookTest {
         } else {
             System.out.println(" нига удалена");
         }
+
+        assertEquals(response, "1");
     }
 
     @Test
@@ -41,6 +47,8 @@ class BookTest {
         } else {
             System.out.println(response.substring(2));
         }
+
+        assertEquals(response, "0");
     }
 
     @Test
@@ -52,5 +60,7 @@ class BookTest {
         } else {
             System.out.println("„итатель книги изменен");
         }
+
+        assertEquals(response, "1");
     }
 }

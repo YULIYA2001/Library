@@ -4,6 +4,8 @@ import com.golubovich.library.controller.Controller;
 import com.golubovich.library.controller.ControllerImpl;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 class PersonTest {
     private static final Controller controller = ControllerImpl.getInstance();
     private static final String DIVIDER_REGEX = "&";
@@ -29,6 +31,8 @@ class PersonTest {
         } else {
             System.out.println("Успешная авторизация");
         }
+
+        assertEquals(response, "0");
     }
 
     @Test
@@ -40,6 +44,8 @@ class PersonTest {
         } else {
             System.out.println(response.substring(2));
         }
+
+        assertEquals(response, "0");
     }
 
     @Test
@@ -51,5 +57,7 @@ class PersonTest {
         } else {
             System.out.println("Роль пользователя изменена");
         }
+
+        assertEquals(response, "1");
     }
 }

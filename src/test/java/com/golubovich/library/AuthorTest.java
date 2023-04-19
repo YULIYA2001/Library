@@ -4,6 +4,8 @@ import com.golubovich.library.controller.Controller;
 import com.golubovich.library.controller.ControllerImpl;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 class AuthorTest {
     private static final Controller controller = ControllerImpl.getInstance();
     private static final String DIVIDER_REGEX = "&";
@@ -20,6 +22,8 @@ class AuthorTest {
         } else {
             System.out.println("Автор добавлен");
         }
+
+        assertEquals(response, "0");
     }
 
     @Test
@@ -31,6 +35,8 @@ class AuthorTest {
         } else {
             System.out.println(response.substring(2));
         }
+
+        assertEquals(response, "0");
     }
 
     @Test
@@ -43,5 +49,7 @@ class AuthorTest {
         } else {
             System.out.println("Информация об авторе изменена");
         }
+
+        assertEquals(response, "1");
     }
 }

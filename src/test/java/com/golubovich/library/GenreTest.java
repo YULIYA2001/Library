@@ -4,6 +4,8 @@ import com.golubovich.library.controller.Controller;
 import com.golubovich.library.controller.ControllerImpl;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 class GenreTest {
 
     private static final Controller controller = ControllerImpl.getInstance();
@@ -20,6 +22,8 @@ class GenreTest {
         } else {
             System.out.println("Жанр добавлен");
         }
+
+        assertEquals(response, "0");
     }
 
     @Test
@@ -31,6 +35,8 @@ class GenreTest {
         } else {
             System.out.println(response.substring(2));
         }
+
+        assertEquals(response, "0");
     }
 
     @Test
@@ -44,5 +50,7 @@ class GenreTest {
         } else {
             System.out.println("Описание жанра изменено");
         }
+
+        assertEquals(response, "1");
     }
 }
