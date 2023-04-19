@@ -12,6 +12,8 @@ import java.util.Arrays;
 @SpringBootApplication
 public class LibraryApplication {
 
+    private static final String ALLOW_ORIGIN = "Access-Control-Allow-Origin";
+
     public static void main(String[] args) {
         SpringApplication.run(LibraryApplication.class, args);
     }
@@ -21,11 +23,11 @@ public class LibraryApplication {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.setAllowCredentials(true);
         corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
-        corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", "Access-Control-Allow-Origin", "Content-Type",
+        corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", ALLOW_ORIGIN, "Content-Type",
                 "Accept", "Authorization", "Origin, Accept", "X-Requested-With",
                 "Access-Control-Request-Method", "Access-Control-Request-Headers"));
         corsConfiguration.setExposedHeaders(Arrays.asList("Origin", "Content-Type", "Accept", "Authorization",
-                "Access-Control-Allow-Origin", "Access-Control-Allow-Origin", "Access-Control-Allow-Credentials"));
+                ALLOW_ORIGIN, ALLOW_ORIGIN, "Access-Control-Allow-Credentials"));
         corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
         urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);

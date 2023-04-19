@@ -23,6 +23,8 @@ public class PersonDAOImpl implements PersonDAO {
     private static final String UPDATE_QUERY = "UPDATE person SET password=?, role=? WHERE id=?";
 
     private static final String DB_CONNECTION_FAIL = "DB connection fail";
+    private static final String EMAIL_STR = "email";
+    private static final String PASSWORD_STR = "password";
 
     @Override
     public long create(Person person) throws DAOException {
@@ -72,8 +74,8 @@ public class PersonDAOImpl implements PersonDAO {
             while (resultSet.next()) {
                 Person person = new Person(
                         resultSet.getLong("id"),
-                        resultSet.getString("email"),
-                        resultSet.getString("password"),
+                        resultSet.getString(EMAIL_STR),
+                        resultSet.getString(PASSWORD_STR),
                         Role.valueOf(resultSet.getString("role")));
                 people.add(person);
             }
@@ -150,8 +152,8 @@ public class PersonDAOImpl implements PersonDAO {
             resultSet.next();
             return new Person(
                     resultSet.getLong("id"),
-                    resultSet.getString("email"),
-                    resultSet.getString("password"),
+                    resultSet.getString(EMAIL_STR),
+                    resultSet.getString(PASSWORD_STR),
                     Role.valueOf(resultSet.getString("role")));
 
         } catch (ConnectionPoolException e) {
@@ -182,8 +184,8 @@ public class PersonDAOImpl implements PersonDAO {
             resultSet.next();
             return new Person(
                     resultSet.getLong("id"),
-                    resultSet.getString("email"),
-                    resultSet.getString("password"),
+                    resultSet.getString(EMAIL_STR),
+                    resultSet.getString(PASSWORD_STR),
                     Role.valueOf(resultSet.getString("role")));
 
         } catch (ConnectionPoolException e) {

@@ -61,10 +61,8 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public Person signIn(String email, String password) throws ServiceException {
         Person person = personRepository.findByEmail(email).orElse(null);
-        if (person != null) {
-            if (person.getPassword().equals(password)) {
-                return person;
-            }
+        if (person != null && person.getPassword().equals(password)) {
+            return person;
         }
 
         return null;

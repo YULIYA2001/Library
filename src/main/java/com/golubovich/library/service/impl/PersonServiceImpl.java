@@ -73,10 +73,8 @@ public class PersonServiceImpl implements PersonService {
     public Person signIn(String email, String password) throws ServiceException {
         try {
             Person person = personDAO.findByEmail(email);
-            if (person != null) {
-                if (person.getPassword().equals(password)) {
-                    return person;
-                }
+            if (person != null && person.getPassword().equals(password)) {
+                return person;
             }
 
             return null;
