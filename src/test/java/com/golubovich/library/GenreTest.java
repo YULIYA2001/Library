@@ -11,7 +11,7 @@ public class GenreTest {
     private static final String ERROR_REGEX = "1";
 
     @Test
-    public void testAdd() {
+    void testAdd() {
         String response = controller.doAction(
                 "add_genre&name=аполог&description=литературный жанр, дидактический рассказ");
 
@@ -23,7 +23,7 @@ public class GenreTest {
     }
 
     @Test
-    public void testShow() {
+    void testShow() {
         String response = controller.doAction("show_genres");
 
         if (response.split(DIVIDER_REGEX)[0].equals(ERROR_REGEX)) {
@@ -34,7 +34,7 @@ public class GenreTest {
     }
 
     @Test
-    public void testChangeDescription() {
+    void testChangeDescription() {
         String response = controller.doAction(
                 "change_genre&id=49&description=литературный жанр," +
                         " дидактический (нравоучительный) рассказ");
