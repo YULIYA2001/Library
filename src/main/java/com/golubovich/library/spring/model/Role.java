@@ -1,9 +1,8 @@
 package com.golubovich.library.spring.model;
 
 //import org.springframework.security.core.authority.SimpleGrantedAuthority;
-
-import java.util.Set;
-import java.util.stream.Collectors;
+//import java.util.Set;
+//import java.util.stream.Collectors;
 
 
 public enum Role {

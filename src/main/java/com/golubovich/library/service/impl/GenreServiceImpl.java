@@ -19,8 +19,8 @@ public class GenreServiceImpl implements GenreService {
         try {
             validateGenre(genre);
 
-            long createdId = genreDAO.create(genre);
-            return createdId;
+            // return createdId
+            return genreDAO.create(genre);
 
         } catch (DAOException e) {
             throw new ServiceException(e);

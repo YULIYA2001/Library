@@ -11,7 +11,7 @@ public class GenreChangeCommand implements Command {
     public static final String FAIL = "1";
     public static final String EQUAL_REGEX = "=";
 
-    private static final Logger log = Logger.getLogger(GenreAddCommand.class);
+    private static final Logger log = Logger.getLogger(GenreChangeCommand.class);
 
     @Override
     public String execute(String[] params) {

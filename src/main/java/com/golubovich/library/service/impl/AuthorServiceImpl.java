@@ -19,8 +19,8 @@ public class AuthorServiceImpl implements AuthorService {
         try {
             validateAuthor(author);
 
-            long createdId = authorDAO.create(author);
-            return createdId;
+            // return createdId
+            return authorDAO.create(author);
 
         } catch (DAOException e) {
             throw new ServiceException(e);

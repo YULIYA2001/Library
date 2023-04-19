@@ -1,5 +1,5 @@
-//package com.golubovich.library.spring.config;
-//
+package com.golubovich.library.spring.config;
+
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.beans.factory.annotation.Qualifier;
 //import org.springframework.context.annotation.Bean;

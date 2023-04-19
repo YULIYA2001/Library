@@ -23,8 +23,8 @@ public class PersonServiceImpl implements PersonService {
                 throw new ServiceException("Existing email");
             }
 
-            long createdId = personDAO.create(person);
-            return createdId;
+            // return createdId
+            return personDAO.create(person);
 
         } catch (DAOException e) {
             throw new ServiceException(e);

@@ -38,16 +38,16 @@ public class BookServiceImpl implements ItemService<Book> {
     }
 
     @Override
-    public Book changeReader(long id, long person_id) throws ServiceException {
+    public Book changeReader(long id, long personId) throws ServiceException {
         Book book = bookRepository.findById(id).orElse(null);
 
         if (book != null) {
-            if (person_id == 0) {
+            if (personId == 0) {
                 book.setPerson(null);
                 return bookRepository.save(book);
             }
 
-            Person person = personRepository.findById(person_id).orElse(null);
+            Person person = personRepository.findById(personId).orElse(null);
 
             if (person == null) {
                 throw new ServiceException("Person id is not found");

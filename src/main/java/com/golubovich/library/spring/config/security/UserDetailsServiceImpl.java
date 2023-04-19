@@ -1,6 +1,6 @@
-//package com.golubovich.library.spring.config.security;
-//
-//
+package com.golubovich.library.spring.config.security;
+
+
 //import com.golubovich.library.spring.model.Person;
 //import com.golubovich.library.spring.repository.PersonRepository;
 //import org.springframework.beans.factory.annotation.Autowired;
