@@ -4,6 +4,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class EncryptMD {
+
+    private EncryptMD(){}
+
     public static String encryptPassword(String password) {
         String encrypted = null;
         try {

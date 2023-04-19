@@ -6,16 +6,16 @@ public abstract class Item {
     private String language;
     private Person person;
 
-    public Item() {
+    protected Item() {
     }
 
-    public Item(String title, String language, Person person) {
+    protected Item(String title, String language, Person person) {
         this.title = title;
         this.language = language;
         this.person = person;
     }
 
-    public Item(long id, String title, String language, Person person) {
+    protected Item(long id, String title, String language, Person person) {
         this.id = id;
         this.title = title;
         this.language = language;

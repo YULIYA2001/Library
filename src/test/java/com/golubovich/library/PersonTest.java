@@ -20,6 +20,7 @@ class PersonTest {
         } else {
             System.out.println("Пользователь добавлен");
         }
+        assertEquals(response, "1");
     }
 
     @Test
