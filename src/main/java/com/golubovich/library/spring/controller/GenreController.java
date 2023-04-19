@@ -47,7 +47,7 @@ public class GenreController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Genre> addGenre(@RequestBody Genre genre){
+    public ResponseEntity<Genre> addGenre(@RequestBody Genre genre) {
         try {
             Genre newGenre = genreService.add(genre);
             return new ResponseEntity<>(newGenre, HttpStatus.CREATED);
@@ -70,7 +70,7 @@ public class GenreController {
 
     @PutMapping("/update/{id}")
     public ResponseEntity<Genre> updateGenreDescription(
-            @PathVariable("id") Long id, @RequestBody String description){
+            @PathVariable("id") Long id, @RequestBody String description) {
         try {
             Genre updateGenre = genreService.changeDescription(id, description);
             return new ResponseEntity<>(updateGenre, HttpStatus.OK);

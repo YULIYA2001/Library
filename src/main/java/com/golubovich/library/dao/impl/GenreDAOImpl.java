@@ -20,6 +20,7 @@ public class GenreDAOImpl implements GenreDAO {
     private static final String DELETE_QUERY = "DELETE FROM genre WHERE id=?";
     private static final String UPDATE_QUERY = "UPDATE genre SET name=?, description=? WHERE id=?";
 
+    private static final String DB_CONNECTION_FAIL = "DB connection fail";
 
     @Override
     public long create(Genre genre) throws DAOException {
@@ -43,7 +44,7 @@ public class GenreDAOImpl implements GenreDAO {
         } catch (SQLException e) {
             throw new DAOException("Error when create a genre", e);
         } catch (ConnectionPoolException e) {
-            throw new DAOException("DB connection fail", e);
+            throw new DAOException(DB_CONNECTION_FAIL, e);
         } finally {
             connectionPool.closeConnection(connection, preparedStatement, resultSet);
         }
@@ -76,7 +77,7 @@ public class GenreDAOImpl implements GenreDAO {
             return genres;
 
         } catch (ConnectionPoolException e) {
-            throw new DAOException("DB connection fail", e);
+            throw new DAOException(DB_CONNECTION_FAIL, e);
         } catch (SQLException e) {
             throw new DAOException("Error when read genres", e);
         } finally {
@@ -100,7 +101,7 @@ public class GenreDAOImpl implements GenreDAO {
         } catch (SQLException e) {
             throw new DAOException("Error when update genre", e);
         } catch (ConnectionPoolException e) {
-            throw new DAOException("DB connection fail", e);
+            throw new DAOException(DB_CONNECTION_FAIL, e);
         } finally {
             connectionPool.closeConnection(connection, preparedStatement);
         }
@@ -120,7 +121,7 @@ public class GenreDAOImpl implements GenreDAO {
         } catch (SQLException e) {
             throw new DAOException("Error when delete genre", e);
         } catch (ConnectionPoolException e) {
-            throw new DAOException("DB connection fail", e);
+            throw new DAOException(DB_CONNECTION_FAIL, e);
         } finally {
             connectionPool.closeConnection(connection, preparedStatement);
         }
@@ -149,7 +150,7 @@ public class GenreDAOImpl implements GenreDAO {
                     resultSet.getString("description"));
 
         } catch (ConnectionPoolException e) {
-            throw new DAOException("DB connection fail", e);
+            throw new DAOException(DB_CONNECTION_FAIL, e);
         } catch (SQLException e) {
             throw new DAOException("Error when find genre by id", e);
         } finally {

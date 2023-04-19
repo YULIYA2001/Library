@@ -22,6 +22,8 @@ public class PersonDAOImpl implements PersonDAO {
     private static final String DELETE_QUERY = "DELETE FROM person WHERE id=?";
     private static final String UPDATE_QUERY = "UPDATE person SET password=?, role=? WHERE id=?";
 
+    private static final String DB_CONNECTION_FAIL = "DB connection fail";
+
     @Override
     public long create(Person person) throws DAOException {
         Connection connection = null;
@@ -45,7 +47,7 @@ public class PersonDAOImpl implements PersonDAO {
         } catch (SQLException e) {
             throw new DAOException("Error when create a person", e);
         } catch (ConnectionPoolException e) {
-            throw new DAOException("DB connection fail", e);
+            throw new DAOException(DB_CONNECTION_FAIL, e);
         } finally {
             connectionPool.closeConnection(connection, preparedStatement, resultSet);
         }
@@ -79,7 +81,7 @@ public class PersonDAOImpl implements PersonDAO {
             return people;
 
         } catch (ConnectionPoolException e) {
-            throw new DAOException("DB connection fail", e);
+            throw new DAOException(DB_CONNECTION_FAIL, e);
         } catch (SQLException e) {
             throw new DAOException("Error when read all person", e);
         } finally {
@@ -103,7 +105,7 @@ public class PersonDAOImpl implements PersonDAO {
         } catch (SQLException e) {
             throw new DAOException("Error when update person", e);
         } catch (ConnectionPoolException e) {
-            throw new DAOException("DB connection fail", e);
+            throw new DAOException(DB_CONNECTION_FAIL, e);
         } finally {
             connectionPool.closeConnection(connection, preparedStatement);
         }
@@ -123,7 +125,7 @@ public class PersonDAOImpl implements PersonDAO {
         } catch (SQLException e) {
             throw new DAOException("Error when delete person", e);
         } catch (ConnectionPoolException e) {
-            throw new DAOException("DB connection fail", e);
+            throw new DAOException(DB_CONNECTION_FAIL, e);
         } finally {
             connectionPool.closeConnection(connection, preparedStatement);
         }
@@ -153,7 +155,7 @@ public class PersonDAOImpl implements PersonDAO {
                     Role.valueOf(resultSet.getString("role")));
 
         } catch (ConnectionPoolException e) {
-            throw new DAOException("DB connection fail", e);
+            throw new DAOException(DB_CONNECTION_FAIL, e);
         } catch (SQLException e) {
             throw new DAOException("Error when find person by id", e);
         } finally {
@@ -185,7 +187,7 @@ public class PersonDAOImpl implements PersonDAO {
                     Role.valueOf(resultSet.getString("role")));
 
         } catch (ConnectionPoolException e) {
-            throw new DAOException("DB connection fail", e);
+            throw new DAOException(DB_CONNECTION_FAIL, e);
         } catch (SQLException e) {
             throw new DAOException("Error when find person by email", e);
         } finally {

@@ -29,6 +29,8 @@ public class BookDAOImpl implements ItemDAO<Book> {
             " WHERE id=?";
     private static final String BY_ID = " WHERE item.id=?";
 
+    private static final String DB_CONNECTION_FAIL = "DB connection fail";
+
     @Override
     public long create(Book book) throws DAOException {
         Connection connection = null;
@@ -76,7 +78,7 @@ public class BookDAOImpl implements ItemDAO<Book> {
         } catch (SQLException e) {
             throw new DAOException("Error when create a book/item", e);
         } catch (ConnectionPoolException e) {
-            throw new DAOException("DB connection fail", e);
+            throw new DAOException(DB_CONNECTION_FAIL, e);
         } finally {
             connectionPool.closeConnection(connection, preparedStatement, resultSet);
         }
@@ -122,7 +124,7 @@ public class BookDAOImpl implements ItemDAO<Book> {
             return books;
 
         } catch (ConnectionPoolException e) {
-            throw new DAOException("DB connection fail", e);
+            throw new DAOException(DB_CONNECTION_FAIL, e);
         } catch (SQLException e) {
             throw new DAOException("Error when read books", e);
         } finally {
@@ -153,7 +155,7 @@ public class BookDAOImpl implements ItemDAO<Book> {
         } catch (SQLException e) {
             throw new DAOException("Error when update book", e);
         } catch (ConnectionPoolException e) {
-            throw new DAOException("DB connection fail", e);
+            throw new DAOException(DB_CONNECTION_FAIL, e);
         } finally {
             connectionPool.closeConnection(connection, preparedStatement);
         }
@@ -173,7 +175,7 @@ public class BookDAOImpl implements ItemDAO<Book> {
         } catch (SQLException e) {
             throw new DAOException("Error when delete book", e);
         } catch (ConnectionPoolException e) {
-            throw new DAOException("DB connection fail", e);
+            throw new DAOException(DB_CONNECTION_FAIL, e);
         } finally {
             connectionPool.closeConnection(connection, preparedStatement);
         }
@@ -218,7 +220,7 @@ public class BookDAOImpl implements ItemDAO<Book> {
 
 
         } catch (ConnectionPoolException e) {
-            throw new DAOException("DB connection fail", e);
+            throw new DAOException(DB_CONNECTION_FAIL, e);
         } catch (SQLException e) {
             throw new DAOException("Error when find book by id", e);
         } finally {

@@ -9,7 +9,7 @@ import java.util.List;
 public interface ItemService {
     long add(Book book) throws ServiceException;
 
-    boolean changeReader(long id, long person_id) throws ServiceException;
+    boolean changeReader(long id, long personId) throws ServiceException;
 
     List<Book> showAll() throws ServiceException;
 

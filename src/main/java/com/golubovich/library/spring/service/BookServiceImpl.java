@@ -67,7 +67,7 @@ public class BookServiceImpl implements ItemService<Book> {
 
     @Override
     public void delete(Long id) throws ServiceException {
-        Book book = (Book) bookRepository.findById(id).orElse(null);
+        Book book = bookRepository.findById(id).orElse(null);
         if (book != null) {
             bookRepository.delete(book);
         } else {

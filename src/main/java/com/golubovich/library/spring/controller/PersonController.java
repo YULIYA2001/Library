@@ -71,7 +71,7 @@ public class PersonController {
 //    }
 
     @PostMapping("/add")
-    public ResponseEntity<Person> registerUser(@RequestBody Person user){
+    public ResponseEntity<Person> registerUser(@RequestBody Person user) {
         try {
             Person newUser = personService.add(user);
             return new ResponseEntity<>(newUser, HttpStatus.CREATED);
@@ -82,7 +82,7 @@ public class PersonController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Person> changeUserRole(@PathVariable("id") Long id, @RequestBody String role){
+    public ResponseEntity<Person> changeUserRole(@PathVariable("id") Long id, @RequestBody String role) {
         try {
             Person updateUser = personService.changeRole(id, Role.valueOf(role.toUpperCase()));
             return new ResponseEntity<>(updateUser, HttpStatus.OK);

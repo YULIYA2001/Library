@@ -21,8 +21,8 @@ public class BookServiceImpl implements ItemService {
         try {
             validateBook(book);
 
-            long createdId = bookDAO.create(book);
-            return createdId;
+            // return created book id
+            return bookDAO.create(book);
 
         } catch (DAOException e) {
             throw new ServiceException(e);
@@ -30,18 +30,18 @@ public class BookServiceImpl implements ItemService {
     }
 
     @Override
-    public boolean changeReader(long id, long person_id) throws ServiceException {
+    public boolean changeReader(long id, long personId) throws ServiceException {
         try {
             Book book = bookDAO.findById(id);
 
             if (book != null) {
-                if (person_id == 0) {
+                if (personId == 0) {
                     book.setPerson(null);
                     return bookDAO.update(book);
                 }
 
                 PersonDAO personDAO = daoProvider.getPersonDAO();
-                Person person = personDAO.findById(person_id);
+                Person person = personDAO.findById(personId);
 
                 if (person == null) {
                     throw new ServiceException("Person id is not found");

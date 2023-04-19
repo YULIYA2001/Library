@@ -74,7 +74,7 @@ public class BookController {
 
     @PutMapping("/update/{id}")
 //    @PreAuthorize("hasAuthority('user:write')")
-    public ResponseEntity<Book> changeBookReader(@PathVariable("id") Long id, @RequestBody Long personId){
+    public ResponseEntity<Book> changeBookReader(@PathVariable("id") Long id, @RequestBody Long personId) {
         try {
             Book updateBook = bookService.changeReader(id, personId);
             return new ResponseEntity<>(updateBook, HttpStatus.OK);

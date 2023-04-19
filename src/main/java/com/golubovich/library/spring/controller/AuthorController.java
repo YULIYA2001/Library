@@ -48,7 +48,7 @@ public class AuthorController {
 
 
     @PostMapping("/add")
-    public ResponseEntity<Author> addAuthor(@RequestBody Author author){
+    public ResponseEntity<Author> addAuthor(@RequestBody Author author) {
         try {
             Author newAuthor = authorService.add(author);
             return new ResponseEntity<>(newAuthor, HttpStatus.CREATED);
@@ -59,7 +59,7 @@ public class AuthorController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Author> updateAuthorInfo(@PathVariable("id") Long id, @RequestBody String info){
+    public ResponseEntity<Author> updateAuthorInfo(@PathVariable("id") Long id, @RequestBody String info) {
         try {
             Author updateAuthor = authorService.changeInfo(id, info);
             return new ResponseEntity<>(updateAuthor, HttpStatus.OK);

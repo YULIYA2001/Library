@@ -1,6 +1,5 @@
 package com.golubovich.library.spring.service;
 
-import com.golubovich.library.spring.model.Book;
 import com.golubovich.library.spring.model.Genre;
 import com.golubovich.library.spring.repository.GenreRepository;
 import com.golubovich.library.spring.service.api.GenreService;
@@ -54,7 +53,7 @@ public class GenreServiceImpl implements GenreService {
 
     @Override
     public void delete(Long id) throws ServiceException {
-        Genre genre = (Genre) genreRepository.findById(id).orElse(null);
+        Genre genre = genreRepository.findById(id).orElse(null);
         if (genre != null) {
             genreRepository.delete(genre);
         } else {
