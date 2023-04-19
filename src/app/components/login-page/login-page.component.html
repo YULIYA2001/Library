@@ -1,0 +1,20 @@
+<div class="container bootstrap snippets bootdey">
+
+  <div style="height:auto;min-height:300px;" class="jumbotron d-flex justify-content-between">
+    <div class="col-md-4">
+      <img class="img-responsive center-block img-user" src="https://bootdey.com/img/Content/Manbrown2.png">
+    </div>
+    <div class="col-md-6 form-content">
+      <form #loginForm="ngForm" (ngSubmit)="onLoginUser(loginForm)" class="form-signin">
+<!--      <form action="" id="accesspanel" class="form-signin">-->
+        <h1 class="form-signin-heading text-muted mb-4">Вход</h1>
+        <input ngModel type="text" id="email" autofocus="autofocus" placeholder="Email" class="mb-2 form-control" name="email">
+        <input ngModel type="password" id="password" placeholder="Пароль" class="mb-2 form-control" name="password">
+        <button type="submit" class="btn btn-lg btn-success btn-block">
+          Войти
+        </button>
+      </form>
+      <a class="btn">Зарегестрироваться</a>
+    </div>
+  </div>
+</div>

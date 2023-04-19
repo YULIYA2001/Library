@@ -1,0 +1,72 @@
+.img-user{
+  margin-top: 40px;
+}
+
+.jumbotron {
+  margin-top: 10%;
+}
+
+.jumbotron label {
+  font-size:12px;
+}
+
+.marketing {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
+}
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+.jumbotron {
+  text-align: center;
+  padding:0px !important;
+}
+
+.marketing {
+  margin: 40px 0;
+}
+.marketing p + h4 {
+  margin-top: 28px;
+}
+
+
+@media screen and (min-width: 768px) {
+  .marketing{
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .jumbotron {
+    border-bottom: 0;
+  }
+}
+
+.btn:focus {
+  outline:0;
+  -webkit-outline:0;
+  -moz-outline:0;
+}
+.form-signin {
+  max-width: 280px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading, .form-signin {
+  margin-bottom: 10px;
+}
+.form-signin .form-control {
+  position: relative;
+  font-size: 16px;
+  height: auto;
+  padding: 10px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+

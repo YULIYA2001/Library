@@ -1,0 +1,160 @@
+<div class="container my-4 pt-4" id="main-container">
+
+  <div class="d-flex justify-content-center" style="width: 100%">
+    <form class="form-inline my-2 my-lg-0 mr-sm-2">
+      <input type="search" ngModel (ngModelChange)="searchAuthors(key.value)" #key="ngModel"
+             name="key" id="searchName" class="form-control mr-sm-2" placeholder="Поиск..." required>
+    </form>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8">
+      <div class="section-title text-center text-md-start">
+        <h3 class="title mb-4">Авторы</h3>
+      </div>
+    </div><!--end col-->
+
+    <div class="col-md-4 mt-4 mt-sm-0 d-md-block">
+      <div class="text-right text-md-end">
+        <a (click)="onOpenModal(null, 'add')" class="btn text-primary ml-0 mr-auto">Новый</a>
+      </div>
+    </div><!--end col-->
+  </div><!--end row-->
+
+  <div class="row">
+    <div *ngFor="let author of authors" class="col-lg-4 col-md-6 col-12 mt-4 pt-2 d-flex align-items-stretch">
+      <div class="card border-0 bg-light rounded shadow">
+        <div class="card-body p-4">
+          <div class="mt-3 card-text">
+            <h5>{{author?.name}}</h5>
+            <div id="descr-short">{{author?.info}}</div>
+          </div>
+          <div class="mb-0 card-text d-flex">
+            <a (click)="onOpenModal(author, 'show')" class="btn btn-primary ml-0 mr-auto">Подробнее</a>
+            <div>
+              <a (click)="onOpenModal(author, 'edit')" class="btn btn-primary mr-2 ml-auto"><i
+                class="fa fa-edit"></i></a>
+<!--              <a (click)="onOpenModal(author, 'delete')" class="btn btn-primary mr-0"><i-->
+<!--                class="	fa fa-trash"></i></a>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!--end col-->
+  </div><!--end row-->
+</div>
+
+
+<!-- Add Author Modal -->
+<div class="modal fade" id="addAuthorModal" tabindex="-1" role="dialog" aria-labelledby="addAuthorModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addAuthorModalLabel">Добавление нового автора</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #addForm="ngForm" (ngSubmit)="onAddAuthor(addForm)">
+          <div class="form-group">
+            <label for="name">Автор</label>
+            <input type="text" ngModel name="name" class="form-control" id="name" placeholder="Имя" required>
+          </div>
+          <div class="form-group">
+            <label for="info">Информация об авторе</label>
+            <textarea rows="4" ngModel name="info" class="form-control" id="info" placeholder="Об авторе"
+                      required></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="add-author-form" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Edit Modal -->
+<div class="modal fade" id="updateAuthorModal" tabindex="-1" role="dialog" aria-labelledby="authorEditModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateAuthorModalLabel">Изменение информации об авторе</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #editForm="ngForm">
+          <h6 class="text-center">{{editAuthor?.name}}</h6>
+          <input type="hidden" ngModel="{{editAuthor?.id}}" name="id" class="form-control" id="id">
+          <input type="hidden" ngModel="{{editAuthor?.name}}" name="name" class="form-control" id="name2">
+          <div class="form-group">
+            <label for="info2">Об авторе</label>
+            <textarea rows="4" ngModel="{{editAuthor?.info}}" name="info" class="form-control"
+                      id="info2"></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="" data-bs-dismiss="modal" class="btn btn-secondary">Закрыть</button>
+            <button (click)="onUpdateAuthor(editForm.value)" data-bs-dismiss="modal" class="btn btn-primary">Сохранить
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Show Detailed Author Modal -->
+<div class="modal fade" id="showAuthorModal" tabindex="-1" role="dialog" aria-labelledby="authorShowModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="showAuthorModalLabel">{{editAuthor?.name}}</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="info3">Об авторе</label>
+          <p class="mx-0" style="overflow-wrap: break-word;" name="info" id="info3">{{editAuthor?.info}}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" data-bs-dismiss="modal" class="btn btn-secondary">Закрыть</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--&lt;!&ndash; Delete Author Modal &ndash;&gt;-->
+<!--<div class="modal fade" id="deleteAuthorModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel"-->
+<!--     aria-hidden="true">-->
+<!--  <div class="modal-dialog" role="document">-->
+<!--    <div class="modal-content">-->
+<!--      <div class="modal-header">-->
+<!--        <h5 class="modal-title" id="deleteModelLabel">Удаление автора</h5>-->
+<!--        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">-->
+<!--          <span aria-hidden="true">&times;</span>-->
+<!--        </button>-->
+<!--      </div>-->
+<!--      <div class="modal-body">-->
+<!--        <p>Точно хотите удалить автора "{{deleteAuthor?.name}}"?</p>-->
+<!--        <div class="modal-footer">-->
+<!--          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Нет</button>-->
+<!--          <button (click)="onDeleteAuthor(deleteAuthor?.id)" class="btn btn-danger" data-bs-dismiss="modal">Да</button>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+

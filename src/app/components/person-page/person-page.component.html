@@ -1,0 +1,39 @@
+<div class="container my-4 pt-4" id="main-container">
+
+  <div class="d-flex justify-content-center" style="width: 100%">
+    <form class="form-inline my-2 my-lg-0 mr-sm-2">
+      <input type="search" ngModel (ngModelChange)="searchPeople(key.value)" #key="ngModel"
+             name="key" id="searchName" class="form-control mr-sm-2" placeholder="Поиск..." required>
+    </form>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8">
+      <div class="section-title text-center text-md-start">
+        <h3 class="title mb-4">Пользователи</h3>
+      </div>
+    </div><!--end col-->
+  </div><!--end row-->
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Email адрес</th>
+      <th scope="col">Роль</th>
+      <th scope="col">Изменить роль</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let person of people; let i = index">
+      <th scope="row">{{i+1}}</th>
+      <td>{{person?.email}}</td>
+      <td>{{person?.role}}</td>
+      <td>
+        <a (click)="onUpdatePerson(person)" class="btn btn-primary mr-2 ml-auto"><i
+          class="fa fa-retweet"></i></a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,10 @@
+.availability {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.book-desc {
+  margin: 10px;
+}
+
