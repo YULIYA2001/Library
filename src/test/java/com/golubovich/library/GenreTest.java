@@ -4,7 +4,7 @@ import com.golubovich.library.controller.Controller;
 import com.golubovich.library.controller.ControllerImpl;
 import org.junit.jupiter.api.Test;
 
-public class GenreTest {
+class GenreTest {
 
     private static final Controller controller = ControllerImpl.getInstance();
     private static final String DIVIDER_REGEX = "&";
