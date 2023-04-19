@@ -1,7 +1,6 @@
 package com.golubovich.library.controller.command.impl;
 
 import com.golubovich.library.controller.command.Command;
-import org.apache.log4j.Logger;
 
 public class UnknownCommand implements Command {
 

@@ -22,6 +22,8 @@ public class AuthorDAOImpl implements AuthorDAO {
     private static final String DELETE_QUERY = "DELETE FROM author WHERE id=?";
     private static final String UPDATE_QUERY = "UPDATE author SET name=?, info=? WHERE id=?";
 
+    private static final String DB_CONNECTION_FAIL = "DB connection fail";
+
     @Override
     public long create(Author author) throws DAOException {
         Connection connection = null;
@@ -44,7 +46,7 @@ public class AuthorDAOImpl implements AuthorDAO {
         } catch (SQLException e) {
             throw new DAOException("Error when create an author", e);
         } catch (ConnectionPoolException e) {
-            throw new DAOException("DB connection fail", e);
+            throw new DAOException(DB_CONNECTION_FAIL, e);
         } finally {
             connectionPool.closeConnection(connection, preparedStatement, resultSet);
         }
@@ -77,7 +79,7 @@ public class AuthorDAOImpl implements AuthorDAO {
             return authors;
 
         } catch (ConnectionPoolException e) {
-            throw new DAOException("DB connection fail", e);
+            throw new DAOException(DB_CONNECTION_FAIL, e);
         } catch (SQLException e) {
             throw new DAOException("Error when read authors", e);
         } finally {
@@ -101,7 +103,7 @@ public class AuthorDAOImpl implements AuthorDAO {
         } catch (SQLException e) {
             throw new DAOException("Error when update author", e);
         } catch (ConnectionPoolException e) {
-            throw new DAOException("DB connection fail", e);
+            throw new DAOException(DB_CONNECTION_FAIL, e);
         } finally {
             connectionPool.closeConnection(connection, preparedStatement);
         }
@@ -135,7 +137,7 @@ public class AuthorDAOImpl implements AuthorDAO {
                     resultSet.getString("info"));
 
         } catch (ConnectionPoolException e) {
-            throw new DAOException("DB connection fail", e);
+            throw new DAOException(DB_CONNECTION_FAIL, e);
         } catch (SQLException e) {
             throw new DAOException("Error when find author by id", e);
         } finally {
@@ -156,7 +158,7 @@ public class AuthorDAOImpl implements AuthorDAO {
             resultSet = preparedStatement.executeQuery();
 
             if (!resultSet.isBeforeFirst()) {
-                return null;
+                return new ArrayList<>();
             }
 
             List<Author> authors = new ArrayList<>();
@@ -171,7 +173,7 @@ public class AuthorDAOImpl implements AuthorDAO {
             return authors;
 
         } catch (ConnectionPoolException e) {
-            throw new DAOException("DB connection fail", e);
+            throw new DAOException(DB_CONNECTION_FAIL, e);
         } catch (SQLException e) {
             throw new DAOException("Error when find author by book id", e);
         } finally {

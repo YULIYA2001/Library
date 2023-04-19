@@ -1,6 +1,5 @@
 package com.golubovich.library.bean;
 
-import java.util.List;
 
 public class Author {
     private long id;

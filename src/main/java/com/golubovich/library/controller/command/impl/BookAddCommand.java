@@ -33,14 +33,14 @@ public class BookAddCommand implements Command {
 
             String title = params[0].split(EQUAL_REGEX)[1];
             String language = params[1].split(EQUAL_REGEX)[1];
-            String genre_id = params[2].split(EQUAL_REGEX)[1];
-            String[] authors_ids = params[3].split(EQUAL_REGEX)[1].split(SPACE_REGEX);
+            String genreId = params[2].split(EQUAL_REGEX)[1];
+            String[] authorsIds = params[3].split(EQUAL_REGEX)[1].split(SPACE_REGEX);
 
             try {
-                Genre genre = genreService.takeById(Long.parseLong(genre_id));
+                Genre genre = genreService.takeById(Long.parseLong(genreId));
 
                 List<Author> authors = new ArrayList<>();
-                for (String id : authors_ids) {
+                for (String id : authorsIds) {
                     authors.add(authorService.takeById(Long.parseLong(id)));
                 }
 

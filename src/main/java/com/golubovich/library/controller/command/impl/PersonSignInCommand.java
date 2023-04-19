@@ -14,7 +14,7 @@ public class PersonSignInCommand implements Command {
     private static final String DIVIDER_REGEX = "&";
     public static final String EQUAL_REGEX = "=";
 
-    private static final Logger log = Logger.getLogger(GenreShowAllCommand.class);
+    private static final Logger log = Logger.getLogger(PersonSignInCommand.class);
 
     @Override
     public String execute(String[] params) {

@@ -12,7 +12,7 @@ public class PersonShowAllCommand implements Command {
     public static final String FAIL = "1";
     private static final String DIVIDER_REGEX = "&";
 
-    private static final Logger log = Logger.getLogger(GenreShowAllCommand.class);
+    private static final Logger log = Logger.getLogger(PersonShowAllCommand.class);
 
     @Override
     public String execute(String[] params) {

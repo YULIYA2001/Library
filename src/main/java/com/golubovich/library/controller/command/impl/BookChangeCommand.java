@@ -21,10 +21,10 @@ public class BookChangeCommand implements Command {
             ItemService bookService = provider.getBookService();
 
             String id = params[0].split(EQUAL_REGEX)[1];
-            String person_id = params[1].split(EQUAL_REGEX)[1];
+            String personId = params[1].split(EQUAL_REGEX)[1];
 
             try {
-                return bookService.changeReader(Long.parseLong(id), Long.parseLong(person_id)) ?
+                return bookService.changeReader(Long.parseLong(id), Long.parseLong(personId)) ?
                         SUCCESS : FAIL;
             } catch (ServiceException e) {
                 log.error(e.getMessage());
